@@ -58,7 +58,7 @@ router.get('/appointments', authUser, async (req,res) => {
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
         const allAppointments = await Appointment.find();
-        return res.render('appointments', { user, allAppointments})
+        return res.render('activity', { user, allAppointments})
     }
     return res.redirect('/landing')
 })
@@ -75,7 +75,7 @@ router.get('/sessions', authUser, async (req,res) => {
 
 // *post routes*
 //edit users
-router.post('/users/update', authUser, async (req, res) => {
+router.post('admin/users/update', authUser, async (req, res) => {
     const body = req.body
     const foundUser = await userServices.getPatientId(body.patientId)
     if(foundUser.status !== 200) { return res.redirect('/admin/users');}
@@ -86,7 +86,7 @@ router.post('/users/update', authUser, async (req, res) => {
     return res.redirect('/admin/users');
 })
 
-router.post('/users/delete', authUser, async (req, res) => {
+router.post('admin/users/delete', authUser, async (req, res) => {
     const body = req.body
     const foundUser = await userServices.getPatientId(body.patientId)
     if(foundUser.status !== 200) { return res.redirect('/admin/users');}

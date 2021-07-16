@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/Profile.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+       
+    <title><%= user.first_name %> || Profile Page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-img">
+                <img src="/IMG/User.png" alt="" width="200">
+            </div>
+            <div class="profile-nav-info">
+                <h3 class="User-name"><%= user.first_name %> <%= user.last_name %></h3>
+                <div class="address">
+                    <p class="state">Lagos,</p>
+                    <span class="country">Nigeria.</span>
+                </div>
+                <div class="address">
+                    <p class="state"></p>
+                </div>
+            </div>
+            <div class="profile-option">
+                <div class="notification">
+                    <i class="fa fa-bell"></i>
+                    <span  class="alert-message">4</span>
+                </div>
+            </div>
+        </div>
+        <div class="main-bd">
+            <div class="left-side">
+                <div class="profile-side">
+                    <p class="mobile-no">
+                        <i class="fas fa-hospital"></i>
+                        <%=user.cardNumber%>
+                    </p>
+                    <p class="mobile-no">
+                        <i class="fa fa-phone"></i>
+                        <%= user.phoneNumber ? user.phoneNumber : 'N/A'%>
+                    </p>
+                    <p class="user-mail">
+                        <i class="fa fa-envelope"></i>
+                        <%=user.email%>
+                    </p>
+                    <br />
+                    <br />
+                    <% if(user.user_type == 'PATIENT') { %>
+                        <div class="user-bio">
+                            <h3>Records</h3>
+                            <p class="bio">
+                                <p class="bio"> 
+                                    no records yet
+                                </p>
+                            <% } %>
+                            </p>
+                        </div>
+                    <% } else { %>
+                    <div class="user-bio">
+                        <h3>Bio</h3>
+                        <p class="bio">Specialities
+                            <%= user.specialities %>
+                        </p>
+                    </div>
+                    <% } %>
+                    <br />
+                    <br />
+                    <div class="profile-btn">
+                        <button class="createbtn">
+                            <i class="fa fa-plus"></i>
+                            <a href="/appointments/create">Make an Appointment</a>
+                        </button>
+                    </div>
+                    <!--
+                    <div class="user-rating">
+                        <h3 class="rating">4.5</h3>
+                        <div class="rate">
+                            <div class="star">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <span class="no-patiant"><span>123</span>&nbsp; &nbsp; reviews</span>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="nav mytabs">
+                    <input type="radio" id="Appointment" name="mytabs" checked="checked">
+                    <label for='Appointment'>Appointment</label>
+                    <div class="tab ">
+                        <h1>Your Appointment</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto numquam repellendus modi eaque rem? Vero ad eaque, itaque optio quis nihil, quos earum, quisquam a cumque eligendi fugiat quidem dolores?
+                        </p>
+                    </div>
+                    <input type="radio" id="Medications" name="mytabs">
+                    <label for='Medications'>Medications</label>
+                    <div class="tab">
+                        <h1>Your Medications</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto numquam repellendus modi eaque rem? Vero ad eaque, itaque optio quis nihil, quos earum, quisquam a cumque eligendi fugiat quidem dolores?
+                        </p>
+                    </div>
+                    <input type="radio" id="Settings" name="mytabs">
+                    <label for='Settings'>Settings</label>
+                    <div class="tab">
+                        <h1>Your Settings</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto numquam repellendus modi eaque rem? Vero ad eaque, itaque optio quis nihil, quos earum, quisquam a cumque eligendi fugiat quidem dolores?
+                        </p>
+                    </div>
+                </div>
+                <!--
+                <div class="profile-post tab">
+                    <div class="tab">
+                        <h1>Your Appointment</h1>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto numquam repellendus modi eaque rem? Vero ad eaque, itaque optio quis nihil, quos earum, quisquam a cumque eligendi fugiat quidem dolores?
+                        </p>
+                    </div>
+                    -->
+                    <!--
+                    <div class="profile-review tab">
+                        <h1>Your Medications</h1>
+                        <P>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus temporibus facilis possimus neque mollitia? Dolor dolores nemo sint vero, modi libero nesciunt esse odit vel ab, nobis architecto iure harum.
+                        </P>
+                    </div>
+                    <div class="profile-setting tab">
+                        <h1>ACCOUNT SETTING</h1>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae quo a rerum sapiente velit tempora quod dolore dolor quidem dolores dignissimos officiis, architecto laborum laudantium ea dolorum eum autem sint?
+                        </p>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+     <script>
+        window.watsonAssistantChatOptions = {
+            integrationID: "95abd8e1-6346-4b43-807b-900a49609177", // The ID of this integration.
+            region: "eu-gb", // The region your integration is hosted in.
+            serviceInstanceID: "0678dbbf-f1f8-4d95-9c28-a3b1450df66f", // The ID of your service instance.
+            onLoad: function(instance) { instance.render(); }
+          };
+        setTimeout(function(){
+          const t=document.createElement('script');
+          t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+          document.head.appendChild(t);
+        });
+      </script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

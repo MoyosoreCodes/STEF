@@ -82,7 +82,7 @@
                                 <div></div>
                                 <h5>Name: <%=user.first_name%> <%=user.last_name%></h5>
                                 <h6 style="font-weight: bold;">Location: <%=user.Location%></h6>
-                                <p>ID:&nbsp;<span style="font-weight: bold;">ID: <%=user.patientId%></span></p>
+                                <p>ID:&nbsp;<span style="font-weight: bold;"><%=user.patientId%></span></p>
                                 <div style="height: 403px;width: 810px;">
                                     <ul class="nav nav-tabs" role="tablist" style="width: 568px;">
                                         <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-1">Sessions&nbsp;</a></li>
@@ -162,23 +162,24 @@
                                                         <select class="form-select" name="couselling_type">
                                                             <optgroup label="Counselling areas">
                                                                 <option value="12" selected="">~~Select here~~</option>
-                                                                <option value="13">Academic</option>
-                                                                <option value="14">Work Problems</option>
-                                                                <option value="15">Study Skill</option>
-                                                                <option value="16">Adjustment</option>
-                                                                <option value="17">Relationship</option>
-                                                                <option value="18">Work Problems</option>
-                                                                <option value="19">Career Options</option>
-                                                                <option value="20">PTSD</option>
-                                                                <option value="21">Addiction</option>
-                                                                <option value="22">Substance Related</option>
-                                                                <option value="23">Childhood/Family issues</option>
-                                                                <option value="24">Dreams</option>
-                                                                <option value="25">Parenting</option>
-                                                                <option value="26">Finances</option>
-                                                                <option value="27">Others</option>
+                                                                <option value="Academic">Academic</option>
+                                                                <option value="Work Problems">Work Problems</option>
+                                                                <option value="Study Skill">Study Skill</option>
+                                                                <option value="Adjustment">Adjustment</option>
+                                                                <option value="Relationship">Relationship</option>
+                                                                <option value="Work Problems">Work Problems</option>
+                                                                <option value="Career Options">Career Options</option>
+                                                                <option value="PTSD">PTSD</option>
+                                                                <option value="Addiction">Addiction</option>
+                                                                <option value="Substance Related">Substance Related</option>
+                                                                <option value="Childhood/Family issues">Childhood/Family issues</option>
+                                                                <option value="Dreams">Dreams</option>
+                                                                <option value="Parenting">Parenting</option>
+                                                                <option value="Finances">Finances</option>
+                                                                <option value="Others">Others</option>
                                                             </optgroup>
-                                                        </select><label class="form-label" style="font-size: 18px;margin-top: 16px;">If others please specify:</label><input class="form-control" type="text" style="background: rgba(255,255,255,0);height: 27px;border-style: double;border-top-style: none;border-right-style: none;border-bottom-style: inset;border-left-width: 28px;border-left-style: none;"></form>
+                                                        </select><label class="form-label" style="font-size: 18px;margin-top: 16px;">If others please specify:</label><input class="form-control" type="text" style="background: rgba(255,255,255,0);height: 27px;border-style: double;border-top-style: none;border-right-style: none;border-bottom-style: inset;border-left-width: 28px;border-left-style: none;">
+                                                    </form>
                                                     <div style="padding-top: 15px;padding-left: 119px;"><input type="submit" class="btn btn-primary d-grid" style="background: var(--bs-indigo);padding-top: 6px;padding-left: 15px;"value='Submit'></div>
                                                 </div>
                                             </div>

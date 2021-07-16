@@ -107,6 +107,7 @@ router.post('/sessions', authUser, async (req, res) => {
 })
 
 router.post('/appointments', authUser, async (req, res) => {
+    console.log('here');
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){

@@ -56,7 +56,7 @@ router.post('/patient-register', async (req, res) => {
             return res.json({'error': " errror creating user", })
         }
         console.log(newUser);
-        return res.redirect('/login')
+        return res.redirect('/patient-login')
     } catch (error) {
         return error
     }

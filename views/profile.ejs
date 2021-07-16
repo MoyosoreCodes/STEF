@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>User's home page</title>
+    <title><%= user.first_name%> || Dashboard</title>
     <link rel="stylesheet" href="/User/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Euphoria+Script&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Petit+Formal+Script&amp;display=swap">
@@ -31,7 +31,7 @@
                     </form>
                     <ul class="navbar-nav">
                         <li class="nav-item"><i class="far fa-user" style="width: 60px;height: 48px;padding-top: 10px;padding-left: 35px;color: rgb(91,81,81);"></i></li>
-                        <li class="nav-item dropdown" style="padding-right: 22px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: rgba(91,81,81,0.55);">{Abasii}</a>
+                        <li class="nav-item dropdown" style="padding-right: 22px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: rgba(91,81,81,0.55);"><%= user.email %></a>
                             <div class="dropdown-menu" style="background: #f0f0f0;border-radius: 5px;padding-right: 15px;"><a class="dropdown-item" href="/dashboard/activity-log">Activity log</a><a class="dropdown-item" href="/dashboard/activity-log" style="width: 170px;">Profile</a><a class="dropdown-item" href="/logout">Log Out</a></div>
                         </li>
                     </ul><span class="navbar-text"> </span>

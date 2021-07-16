@@ -62,6 +62,9 @@ router.post('/patient-register', async (req, res) => {
     }
         
 })
+router.get('/faq', authUser, async (req, res) => {
+    return res.render('faq')
+})
 
 router.get('/logout', (req, res) => {
     req.logout();

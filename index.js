@@ -60,4 +60,3 @@ app.use('/', require('./routes/client/login'));
 app.use('/dashboard', require('./routes/client/dashboard'));
 app.use('/appointments', require('./routes/client/appointments'));
 app.use('/watson', require('./routes/api/watson'));
-//app.use('/appointments', require('./routes/client/appointments'));

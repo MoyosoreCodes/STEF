@@ -3,7 +3,7 @@ const  router = express.Router();
 const appointmentController = require('../../controller/appointmentController');
 const userController = require('../../controller/userController');
 
-router.get('/create', (req, res) => {console.log('here');
+router.get('/create', async (req, res) => {console.log('here');
         const _id =  req.session.passport.user;
         const user = await User.findById({_id});
         if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){

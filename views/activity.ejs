@@ -33,29 +33,44 @@
                 <li class="nav-item dropdown no-arrow mx-1">
                     <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter"><%=appointments.length%></span><i class="fas fa-bell fa-fw"></i></a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in" style="width: 422.6px;">
-                            <h6 class="dropdown-header">Notifications</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="me-3">
-                                    <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                                </div>
-                                <div style="width: 293.6px;"><span class="small text-gray-500">January 21, 2021</span>
-                                    <p style="width: 339.6px;text-align: center;max-width: none;margin-right: 0px;min-width: none;">Welcome! You have completed your first session!</p>
-                                </div>
-                            </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="me-3">
-                                    <div class="bg-success icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                                </div>
-                                <div><span class="small text-gray-500">July 10, 2021</span>
-                                    <p>You have completed your counselling session!</p>
-                                </div>
-                            </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="me-3">
-                                    <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
-                                </div>
-                                <div><span class="small text-gray-500">July 15, 2021</span>
-                                    <p>Alert!: You have an upcoming session in 30 days.</p>
-                                </div>
-                            </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                        </div>
+                            <% if(appointments.length > 0) { %>
+                                <h6 class="dropdown-header">Notifications</h6>
+                                <% for(var appointment of appointments) { %>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="me-3">
+                                        <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
+                                    </div>
+                                    <div style="width: 293.6px;"><span class="small text-gray-500"><%= appointment.appointmentDate %></span>
+                                        <p style="width: 339.6px;text-align: center;max-width: none;margin-right: 0px;min-width: none;">Session is <%= appointment.status %></p>
+                                    </div>
+                                </a>
+                                <!-- <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="me-3">
+                                        <div class="bg-success icon-circle"><i class="fas fa-file-alt text-white"></i></div>
+                                    </div>
+                                    <div><span class="small text-gray-500"><%= appointment.appointmentDate %></span>
+                                        <p>Session is <%= appointment.status %></p>
+                                    </div>
+                                </a><a class="dropdown- item d-flex align-items-center" href="#">
+                                    <div class="me-3">
+                                        <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
+                                    </div>
+                                    <div><span class="small text-gray-500">July 15, 2021</span>
+                                        <p>Alert!: You have an upcoming session in 30 days.</p>
+                                    </div> -->
+                                </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                <% } %>
+                            <% } else { %>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="me-3">
+                                        <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
+                                    </div>
+                                    <div style="width: 293.6px;"><span class="small text-gray-500"></span>
+                                        <p style="width: 339.6px;text-align: center;max-width: none;margin-right: 0px;min-width: none;">You have no pending sessions</p>
+                                    </div>
+                                </a>
+                            <% } %>
+                        </div>                             
                     </div>
                 </li>
                 <div class="d-none d-sm-block topbar-divider"></div>

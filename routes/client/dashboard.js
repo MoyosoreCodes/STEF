@@ -29,7 +29,7 @@ router.get('/patient', authUser, async (req, res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
-        return res.render('patient', { user })
+        return res.render('profile', { user })
     }
     return res.redirect('/landing')
 })
@@ -100,7 +100,7 @@ router.post('/appointments', authUser, async (req, res) => {
     const user = await User.findById({_id});
     if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
         await userController.createUserAppointments(req)
-        return res.redirect('/appointments')
+        return res.redirect('/dashboard/patient')
     }
     return res.redirect('/landing')
 })

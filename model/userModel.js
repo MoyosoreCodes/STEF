@@ -22,7 +22,6 @@ const GenericUserObject = {
     //address: String,
     last_login: {type: Date, default: Date.now()},
     //payment_details: GenericPaymentDetails,
-    gender:String,
     sessions: [{
         type: mongoose.Types.ObjectId,
         ref: 'sessions',

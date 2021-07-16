@@ -31,24 +31,26 @@ router.get('/', function(req, res) {
     res.render('landing', {title});
 });
 
-router.get('/login', function(req, res) {
+router.get('/patient-login', function(req, res) {
     const errors = req.flash('error') || [];
     //console.log(errors);
     const title = "Login"
     return res.render('login', {title, errors});
 });
 
-router.post('/login', passport.authenticate('local', 
-        {failureRedirect: '/login', failureFlash: true, successRedirect:'/dashboard'}
+router.get('/patient-forgot-password', function(req, res) {
+    //console.log(errors);
+    const title = "Forgot Password"
+    return res.render('forgot-password', {title, errors});
+});
+
+router.post('/patient-login', passport.authenticate('local', 
+        {failureRedirect: '/login', failureFlash: true, successRedirect:'/dashboard/patient'}
     )
 );
 
-router.post('/register', async (req, res) => {
+router.post('/patient-register', async (req, res) => {
     try {
-        //console.log(req.body);
-        //const user_type = { 'user_type' : 'PATIENT'}
-        //Object.assign(req.body, user_type)
-        //console.log(req.body);
         const newUser = await userServices.addUser(req.body)
         if(!newUser){
             return res.json({'error': " errror creating user", })

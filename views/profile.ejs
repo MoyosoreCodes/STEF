@@ -1,163 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/Profile.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-       
-    <title><%= user.first_name %> || Profile Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>User's home page</title>
+    <link rel="stylesheet" href="/User/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Euphoria+Script&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Petit+Formal+Script&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pinyon+Script&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&amp;display=swap">
+    <link rel="stylesheet" href="/User/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/User/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/User/assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/User/assets/css/aguilaraldo1_section_contact.css">
+    <link rel="stylesheet" href="/User/assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="/User/assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="/User/assets/css/styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="profile-header">
-            <div class="profile-img">
-                <img src="/IMG/User.png" alt="" width="200">
-            </div>
-            <div class="profile-nav-info">
-                <h3 class="User-name"><%= user.first_name %> <%= user.last_name %></h3>
-                <div class="address">
-                    <p class="state">Lagos,</p>
-                    <span class="country">Nigeria.</span>
-                </div>
-                <div class="address">
-                    <p class="state"></p>
-                </div>
-            </div>
-            <div class="profile-option">
-                <div class="notification">
-                    <i class="fa fa-bell"></i>
-                    <span  class="alert-message">4</span>
+    <header class="header-blue" style="height: 500.6px;background: #ffffff;">
+        <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+            <div class="container-fluid"><a class="navbar-brand" href="#" style="color: rgb(91,81,81);font-size: 30px;">CUCC</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <form class="d-flex me-auto navbar-form" target="_self">
+                        <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search" style="width: 19.9px;height: 19px;color: rgb(205,199,199);"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
+                    </form>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><i class="far fa-user" style="width: 60px;height: 48px;padding-top: 10px;padding-left: 35px;color: rgb(91,81,81);"></i></li>
+                        <li class="nav-item dropdown" style="padding-right: 22px;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: rgba(91,81,81,0.55);">{Abasii}</a>
+                            <div class="dropdown-menu" style="background: #f0f0f0;border-radius: 5px;padding-right: 15px;"><a class="dropdown-item" href="/dashboard/activity-log">Activity log</a><a class="dropdown-item" href="/dashboard/activity-log" style="width: 170px;">Profile</a><a class="dropdown-item" href="/logout">Log Out</a></div>
+                        </li>
+                    </ul><span class="navbar-text"> </span>
                 </div>
             </div>
-        </div>
-        <div class="main-bd">
-            <div class="left-side">
-                <div class="profile-side">
-                    <p class="mobile-no">
-                        <i class="fas fa-hospital"></i>
-                        <%=user.cardNumber%>
-                    </p>
-                    <p class="mobile-no">
-                        <i class="fa fa-phone"></i>
-                        <%= user.phoneNumber ? user.phoneNumber : 'N/A'%>
-                    </p>
-                    <p class="user-mail">
-                        <i class="fa fa-envelope"></i>
-                        <%=user.email%>
-                    </p>
-                    <br />
-                    <br />
-                    <% if(user.user_type == 'PATIENT') { %>
-                        <div class="user-bio">
-                            <h3>Records</h3>
-                            <p class="bio">
-                                <p class="bio"> 
-                                    no records yet
-                                </p>
-                            <% } %>
-                            </p>
-                        </div>
-                    <% } else { %>
-                    <div class="user-bio">
-                        <h3>Bio</h3>
-                        <p class="bio">Specialities
-                            <%= user.specialities %>
-                        </p>
-                    </div>
-                    <% } %>
-                    <br />
-                    <br />
-                    <div class="profile-btn">
-                        <button class="createbtn">
-                            <i class="fa fa-plus"></i>
-                            <a href="/appointments/create">Make an Appointment</a>
-                        </button>
-                    </div>
-                    <!--
-                    <div class="user-rating">
-                        <h3 class="rating">4.5</h3>
-                        <div class="rate">
-                            <div class="star">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <span class="no-patiant"><span>123</span>&nbsp; &nbsp; reviews</span>
-                        </div>
-                    </div>
-                    -->
+        </nav>
+        <div class="container hero">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-5 offset-xl-1" data-aos="fade-right" data-aos-delay="200" style="font-family: Poppins, sans-serif;">
+                    <h1 style="margin: 189px 0px 17px;margin-top: 37px;color: rgb(91,81,81);">Hello I'm STEF.</h1>
+                    <p style="color: rgba(91,81,81, 0.8);">STEF(Student Therapy and E-counselling Friend) is a friendly AI counselling assistant&nbsp; and friend that can be reached 24/7.&nbsp;</p><button class="btn btn-light btn-lg shadow action-button" type="button" style="color: rgb(248,243,243);background: rgb(91,81,81);">Chat with me!</button>
                 </div>
-            </div>
-            <div class="right-side">
-                <div class="nav mytabs">
-                    <input type="radio" id="Appointment" name="mytabs" checked="checked">
-                    <label for='Appointment'>Appointment</label>
-                    <div class="tab ">
-                        <h1>Your Appointment</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto numquam repellendus modi eaque rem? Vero ad eaque, itaque optio quis nihil, quos earum, quisquam a cumque eligendi fugiat quidem dolores?
-                        </p>
+                <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder" style="background: url(&quot;/User/assets/img/C1.png&quot;) no-repeat;background-size: contain;transform: translate(72px) scale(1.40);transform-style: preserve-3d;width: 313px;height: 336.6px;padding-right: 16px;margin-right: 6px;">
+                    <div class="phone-mockup">
+                        <div class="screen"></div>
                     </div>
-                    <input type="radio" id="Medications" name="mytabs">
-                    <label for='Medications'>Medications</label>
-                    <div class="tab">
-                        <h1>Your Medications</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto numquam repellendus modi eaque rem? Vero ad eaque, itaque optio quis nihil, quos earum, quisquam a cumque eligendi fugiat quidem dolores?
-                        </p>
-                    </div>
-                    <input type="radio" id="Settings" name="mytabs">
-                    <label for='Settings'>Settings</label>
-                    <div class="tab">
-                        <h1>Your Settings</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto numquam repellendus modi eaque rem? Vero ad eaque, itaque optio quis nihil, quos earum, quisquam a cumque eligendi fugiat quidem dolores?
-                        </p>
-                    </div>
-                </div>
-                <!--
-                <div class="profile-post tab">
-                    <div class="tab">
-                        <h1>Your Appointment</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto numquam repellendus modi eaque rem? Vero ad eaque, itaque optio quis nihil, quos earum, quisquam a cumque eligendi fugiat quidem dolores?
-                        </p>
-                    </div>
-                    -->
-                    <!--
-                    <div class="profile-review tab">
-                        <h1>Your Medications</h1>
-                        <P>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus temporibus facilis possimus neque mollitia? Dolor dolores nemo sint vero, modi libero nesciunt esse odit vel ab, nobis architecto iure harum.
-                        </P>
-                    </div>
-                    <div class="profile-setting tab">
-                        <h1>ACCOUNT SETTING</h1>
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae quo a rerum sapiente velit tempora quod dolore dolor quidem dolores dignissimos officiis, architecto laborum laudantium ea dolorum eum autem sint?
-                        </p>
-                    </div>-->
                 </div>
             </div>
         </div>
-    </div>
-     <script>
-        window.watsonAssistantChatOptions = {
-            integrationID: "95abd8e1-6346-4b43-807b-900a49609177", // The ID of this integration.
-            region: "eu-gb", // The region your integration is hosted in.
-            serviceInstanceID: "0678dbbf-f1f8-4d95-9c28-a3b1450df66f", // The ID of your service instance.
-            onLoad: function(instance) { instance.render(); }
-          };
-        setTimeout(function(){
-          const t=document.createElement('script');
-          t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
-          document.head.appendChild(t);
-        });
-      </script>  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </header>
+    <section class="features" style="height: 383px;background: #eeeeee;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 style="font-family: Poppins, sans-serif;color: rgb(0,0,0);">Make an Appointment!</h2>
+                    <form action="/dashboard/appointments" method="POST" style="padding-left: 27px;padding-top: 11px;color: rgb(0,0,0);font-family: 'Euphoria Script', serif;">
+                        <label class="form-label" style="font-size: 18px;font-family: 'Petit Formal Script', serif;">Date of appointment:</label>
+                        <input class="form-control" type="date" name="appointmentDate">
+                        <label class="form-label" style="font-size: 18px;font-family: 'Petit Formal Script', serif;">Time of appointment:</label>
+                        <input class="form-control" type="text" name="appointmentTime" placeholder="00:00">
+                        <label class="form-label" style="font-size: 18px;font-family: 'Petit Formal Script', serif;">Counselling area:</label>
+                        <select class="form-select" name="couselling_type">
+                            <option value="11" selected="">--Click Here--</option>
+                            <option value="12">Academic</option>
+                            <option value="13">Study Skill</option>
+                            <option value="14">Mental Health</option>
+                            <option value="15">Family / Relatioship</option>
+
+                            <option value="16">Grief / Loss</option>
+                            <option value="17">Career Options</option>
+                            <option value="18">PTSD</option>
+                            <option value="19">Emotional</option>
+                            <option value="20">Fear</option>
+                            <option value="21">Addiction</option>
+                            <option value="22">Other</option>
+                        </select></form>
+                </div>
+            </div>
+        </div>
+        <div style="padding-top: 20px;padding-left: 152px;"><button class="btn btn-primary d-grid" type="button" style="background: #4d3a48;padding-top: 6px;padding-left: 15px;">Submit</button></div>
+    </section>
+    <footer class="footer-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item" style="padding-right: 1px;padding-left: 6px;">
+                    <h3>Pages</h3>
+                    <ul>
+                        <li><a href="#">Home&nbsp;</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="col-md-6" style="padding-left: 0px;">
+                    <div class="row icon-features">
+                        <div class="col-4 icon-feature" style="padding-left: 0px;"><i class="fa fa-map-marker"></i>
+                            <p>Direction</p>
+                            <p>CUCC. B302, CMSS/CBSS Building.&nbsp;</p>
+                        </div>
+                        <div class="col-4 icon-feature"><i class="fa fa-phone"></i>
+                            <p>Phone number</p>
+                            <p>6454875340 - 44095834985</p>
+                        </div>
+                        <div class="col-4 icon-feature"><i class="fa fa-envelope" style="padding-left: 73px;"></i>
+                            <p style="padding-left: 75px;">Email</p>
+                            <p>shola.coker@covenantuniversity.edu.ng</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">Covenant University Counselling Center © 2021</p>
+        </div>
+    </footer>
+    <script src="/User/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/User/assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 </body>
+
 </html>

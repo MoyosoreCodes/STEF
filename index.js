@@ -13,7 +13,7 @@ const MongodbStore = require('connect-mongodb-session')(session)
 dotenv.config();
 
 const port = process.env.PORT || 7000;
-const dbUri = "mongodb+srv://Moyosore:Moyosore12@cluster0.ky9jk.mongodb.net/medic?retryWrites=true&w=majority"
+const dbUri = "mongodb+srv://Moyosore:Moyosore12@cluster0.ky9jk.mongodb.net/STEF?retryWrites=true&w=majority"
 
 const store = new MongodbStore({
     uri: dbUri,

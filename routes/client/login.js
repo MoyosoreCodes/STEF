@@ -38,7 +38,7 @@ router.get('/patient-login', function(req, res) {
     return res.render('login', {title, errors});
 });
 
-router.get('/patient-forgot-password', function(req, res) {
+router.get('/forgot-password', function(req, res) {
     //console.log(errors);
     const title = "Forgot Password"
     return res.render('forgot-password', {title, errors});
@@ -64,6 +64,7 @@ router.post('/patient-register', async (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-    
+    req.logout();
+    return res.redirect('/');
 })
 module.exports = router 

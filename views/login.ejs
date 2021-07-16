@@ -11,9 +11,9 @@
       <div class="container">
         <div class="forms-container">
           <div class="signin-signup">
-            <% for( let i=0; i < errors.length; i++) %>
+            <% for(let i=0; i < errors.length; i++) { %>
                   <p><%= errors[i] %></p>
-              <% } %>
+             <% } %>
             <form action="/patient-login" method="POST" class="sign-in-form">
               <h2 class="title">Log in</h2>
               <div class="input-field">

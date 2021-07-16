@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/patient-login', function(req, res) {
-    const errors = req.flash('error') || [];
+    const errors = req.flash().error || [];
     //console.log(errors);
     const title = "Login"
     return res.render('login', {title, errors});

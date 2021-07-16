@@ -42,14 +42,18 @@ module.exports = {
     createUserAppointments: async (data) => {
         try {
             const body = data.body
-            const foundUser = await userServices.getPatientId(body.patientId);
-            if (foundUser.status !== 200)
-            {
-                return {
-                    status: foundUser.status,
-                    message: foundUser.message,
-                }   
-            }
+            const patient =  data.session.passport.user;
+            const counsellor = await userServices.findAvailableCounsellor()
+            const x = {patient, counsellor}
+            Object.assign(body, x)
+            // const foundUser = await userServices.getPatientId(body.patientId);
+            // if (foundUser.status !== 200)
+            // {
+            //     return {
+            //         status: foundUser.status,
+            //         message: foundUser.message,
+            //     }   
+            // }
             const newAppointment = await Appointment.create(body);
             
             const appointment = await Appointment.findOne({_id: newAppointment._id})

@@ -3,8 +3,14 @@ const  router = express.Router();
 const appointmentController = require('../../controller/appointmentController');
 const userController = require('../../controller/userController');
 
-router.get('/create', (req, res) => {
-    res.render('appointments');
+router.get('/create', (req, res) => {console.log('here');
+        const _id =  req.session.passport.user;
+        const user = await User.findById({_id});
+        if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
+            await userController.createUserAppointments(req)
+            return res.redirect('/dashboard/patient')
+        }
+        return res.redirect('/landing')
 })
 
 router.get('/status', (req, res) => {

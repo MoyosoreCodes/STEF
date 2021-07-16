@@ -93,7 +93,7 @@ module.exports = {
             return {
                 status: 200,
                 message: 'available doctor found',
-                data: availableCounsellor
+                data: availableCounsellor._id
             }
         } catch (error) {
             return {

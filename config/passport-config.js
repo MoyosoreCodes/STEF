@@ -4,13 +4,13 @@ const userDb = require('../database/userDB');
 const bcrypt = require('bcrypt');
 
 passport.use(new LocalStrategy({
-            usernameField: 'email',
+            usernameField: 'patientId',
             passwordField: 'password',
             passReqToCallback: true
         }, 
         async function( req, username, password, done) {
-            const email = username;
-            const user = await userDb.User.findOne({email});
+            const patientId = username;
+            const user = await userDb.User.findOne({patientId});
             if (!user) {
                 console.log("User Doesn't Exist");
                 return done(null, false, req.flash('error', "User Doesn't Exist"));

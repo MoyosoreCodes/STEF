@@ -92,7 +92,7 @@
                                     <div class="tab-content">
                                         <div class="tab-pane" role="tabpanel" id="tab-1">
                                             <div class="table-responsive shadow" style="padding-top: 0px;width: 653px;height: 383px;padding-left: 18px;padding-right: 0px;text-align: center;">
-                                                    <% if(appointments) { %>
+                                                    <% if(appointments.length > 0) { %>
                                                         <table class="table table-hover table-borderless">
                                                             <thead>
                                                                 <tr style="height: 60px;padding-left: 20px;">
@@ -101,16 +101,16 @@
                                                                     <th>Status</th>
                                                                 </tr>
                                                             </thead>
-                                                        <%appointments.forEach(appointment => { %>
+                                                        <% for(var appointment of appointments) { %>
                                                             <tbody>
                                                                 <tr style="height: 60px;">
-                                                                    <td style="text-align: center;"><%=appointment.appointmentDate%></td>
-                                                                    <td style="text-align: center;"><%=appointment.appointmentTime%></td>
-                                                                    <td><%=appointment.status%></td>
+                                                                    <td style="text-align: center;"><%= appointment.appointmentDate %></td>
+                                                                    <td style="text-align: center;"><%= appointment.appointmentTime %></td>
+                                                                    <td><%= appointment.status %></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                        <%})%>
+                                                        <% } %>
                                                     <% } else { %>
                                                         <p> You currently have no sessions with the counsellor </p>
                                                     <% } %>
@@ -159,7 +159,7 @@
                                                         <label class="form-label" style="font-size: 18px;">Time of appointment:</label>
                                                         <input class="form-control" type="text" name="appointmentTime" placeholder="00:00" style="background: rgba(255,255,255,0);border-style: solid;">
                                                         <label class="form-label" style="font-size: 18px;">Area for counselling:</label>
-                                                        <select class="form-select"   name="couselling_type">
+                                                        <select class="form-select" name="couselling_type">
                                                             <optgroup label="Counselling areas">
                                                                 <option value="12" selected="">~~Select here~~</option>
                                                                 <option value="13">Academic</option>
@@ -179,7 +179,7 @@
                                                                 <option value="27">Others</option>
                                                             </optgroup>
                                                         </select><label class="form-label" style="font-size: 18px;margin-top: 16px;">If others please specify:</label><input class="form-control" type="text" style="background: rgba(255,255,255,0);height: 27px;border-style: double;border-top-style: none;border-right-style: none;border-bottom-style: inset;border-left-width: 28px;border-left-style: none;"></form>
-                                                    <div style="padding-top: 15px;padding-left: 119px;"><button class="btn btn-primary d-grid" type="button" style="background: var(--bs-indigo);padding-top: 6px;padding-left: 15px;">Submit</button></div>
+                                                    <div style="padding-top: 15px;padding-left: 119px;"><input type="submit" class="btn btn-primary d-grid" style="background: var(--bs-indigo);padding-top: 6px;padding-left: 15px;"value='Submit'></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -247,6 +247,19 @@
         </div>
     </footer>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        window.watsonAssistantChatOptions = {
+            integrationID: "04529ddf-1333-450c-b422-a7a2a1f27123", // The ID of this integration.
+            region: "eu-gb", // The region your integration is hosted in.
+            serviceInstanceID: "99f34a30-556a-4594-9182-51e6d34bfe2f", // The ID of your service instance.
+            onLoad: function(instance) { instance.render(); }
+          };
+        setTimeout(function(){
+          const t=document.createElement('script');
+          t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+          document.head.appendChild(t);
+        });
+      </script>
 </body>
 
 </html>

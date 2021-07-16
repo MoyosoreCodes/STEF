@@ -18,6 +18,7 @@ const GenericUserObject = {
     Location:String,
     phoneNumber:String,
     grade:String,
+    bio:String,
     user_type: {type: String,default: user_types.STUDENT},
     //address: String,
     last_login: {type: Date, default: Date.now()},

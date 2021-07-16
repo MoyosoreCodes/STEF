@@ -37,8 +37,10 @@ router.get('/patient', authUser, async (req, res) => {
 router.get('/activity-log', authUser, async (req, res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
+    const appointments = await Appointment.find({patient:user._id});
+    const sessions = await Session.find({patient:user._id})
     if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
-        return res.render('activity', { user })
+        return res.render('activity', { user, appointments, sessions })
     }
     return res.redirect('/landing')
 })

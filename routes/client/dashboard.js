@@ -34,6 +34,15 @@ router.get('/patient', authUser, async (req, res) => {
     return res.redirect('/landing')
 })
 
+router.get('/activity-log', authUser, async (req, res) => {
+    const _id =  req.session.passport.user;
+    const user = await User.findById({_id});
+    if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
+        return res.render('activity', { user })
+    }
+    return res.redirect('/landing')
+})
+
 router.get('/users', authUser, async (req, res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});

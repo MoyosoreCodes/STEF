@@ -16,3 +16,4 @@ router.get('/create', async (req, res) => {console.log('here');
 router.get('/status', (req, res) => {
     //create function to view appointment status in the controller
 })
+module.exports = router 

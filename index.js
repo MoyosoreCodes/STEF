@@ -17,7 +17,7 @@ const dbUri = "mongodb+srv://Moyosore:Moyosore12@cluster0.ky9jk.mongodb.net/STEF
 
 const store = new MongodbStore({
     uri: dbUri,
-    collection: 'sessions',
+    collection: 'sess',
     ttl:3*24*60*60*1000
 })
 

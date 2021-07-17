@@ -68,7 +68,7 @@ module.exports = {
                 data: updatedUser
             }
         } catch (error) {
-            console.log('catch error');
+            console.log(error);
             return {
                 status: 500,
                 message: "Session creation failed",

@@ -3,7 +3,7 @@ const  router = express.Router();
 const appointmentController = require('../../controller/appointmentController');
 const userController = require('../../controller/userController');
 
-router.get('/create', async (req, res) => {console.log('here');
+router.post('/create', async (req, res) => {console.log('here');
         const _id =  req.session.passport.user;
         const user = await User.findById({_id});
         console.log(req.body);
@@ -14,7 +14,7 @@ router.get('/create', async (req, res) => {console.log('here');
         return res.redirect('/landing')
 })
 
-router.get('/status', (req, res) => {
-    //create function to view appointment status in the controller
-})
+// router.get('/status', (req, res) => {
+//     //create function to view appointment status in the controller
+// })
 module.exports = router 

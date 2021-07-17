@@ -106,28 +106,14 @@ router.post('/sessions', authUser, async (req, res) => {
     return res.redirect('/landing')
 })
 
-router.post('/activity-log', authUser, async (req, res) => {
-    console.log('here');
-    const {appointmentDate,
-        appointmentTime,
-        couselling_type, new_password} = req.body;
+router.post('/patient-updatePassword', authUser, async (req, res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
-    if(appointmentDate, appointmentTime, couselling_type) {
-        if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
-            await userController.createUserAppointments(req)
-            return res.redirect('/dashboard/activity-log')
-        }
-        return res.redirect('/landing')
+    const {new_password} = req.body
+    if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
+        await user.setPassword(new_password)
+        return res.redirect('/dashboard/activity-log')
     }
-
-    if(new_password){
-        if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
-            await user.setPassword(new_password)
-            return res.redirect('/dashboard/activity-log')
-        }
-        return res.redirect('/landing')
-    }
-    
+    return res.redirect('/landing');    
 })
 module.exports = router 

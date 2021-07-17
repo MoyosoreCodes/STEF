@@ -87,137 +87,135 @@
     <div class="col-lg-12 d-lg-flex justify-content-lg-center" style="height: 600px;margin-top: 10px;">
         <div class="card shadow mb-3" style="width: 1270px;height: 590px;margin-bottom: 60px;">
             <div class="card-body">
-                <form  action="/dashboard/activity-log" method="POST" style="width: 1250px;height: 206px;padding: 41px 41px;padding-top: 0px;padding-right: 94px;padding-bottom: 16px;">
-                    <div class="container">
-                        <div class="row" style="width: 1092px;margin-right: 0px;">
-                            <div class="col-md-3">
-                                <div style="width: 25px;"><img src="/User/assets/img/Gojou.jpg" style="width: 155px;height: 162.1px;"></div>
-                            </div>
-                            <div class="col-md-7" style="padding-bottom: 25px;height: 100px;width: 811px;">
-                                <div></div>
-                                <h5>Name: <%=user.first_name%> <%=user.last_name%></h5>
-                                <h6 style="font-weight: bold;">Location: <%=user.Location%></h6>
-                                <p>ID:&nbsp;<span style="font-weight: bold;"><%=user.patientId%></span></p>
-                                <div style="height: 403px;width: 810px;">
-                                    <ul class="nav nav-tabs" role="tablist" style="width: 568px;">
-                                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-1">Sessions&nbsp;</a></li>
-                                        <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-3">Appointment</a></li>
-                                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">Settings</a></li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane" role="tabpanel" id="tab-1">
-                                            <div class="table-responsive shadow" style="padding-top: 0px;width: 653px;height: 383px;padding-left: 18px;padding-right: 0px;text-align: center;">
-                                                    <% if(appointments.length > 0) { %>
-                                                        <table class="table table-hover table-borderless">
-                                                            <thead>
-                                                                <tr style="height: 60px;padding-left: 20px;">
-                                                                    <th>Date</th>
-                                                                    <th>Time</th>
-                                                                    <th>Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                        <% for(var appointment of appointments) { %>
-                                                            <tbody>
-                                                                <tr style="height: 60px;">
-                                                                    <td style="text-align: center;"><%= appointment.appointmentDate %></td>
-                                                                    <td style="text-align: center;"><%= appointment.appointmentTime %></td>
-                                                                    <td><%= appointment.status %></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <% } %>
-                                                    <% } else { %>
-                                                        <p> You currently have no sessions with the counsellor </p>
+                <div class="container">
+                    <div class="row" style="width: 1092px;margin-right: 0px;">
+                        <div class="col-md-3">
+                            <div style="width: 25px;"><img src="/User/assets/img/Gojou.jpg" style="width: 155px;height: 162.1px;"></div>
+                        </div>
+                        <div class="col-md-7" style="padding-bottom: 25px;height: 100px;width: 811px;">
+                            <div></div>
+                            <h5>Name: <%=user.first_name%> <%=user.last_name%></h5>
+                            <h6 style="font-weight: bold;">Location: <%=user.Location%></h6>
+                            <p>ID:&nbsp;<span style="font-weight: bold;"><%=user.patientId%></span></p>
+                            <div style="height: 403px;width: 810px;">
+                                <ul class="nav nav-tabs" role="tablist" style="width: 568px;">
+                                    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-1">Sessions&nbsp;</a></li>
+                                    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-3">Appointment</a></li>
+                                    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">Settings</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane" role="tabpanel" id="tab-1">
+                                        <div class="table-responsive shadow" style="padding-top: 0px;width: 653px;height: 383px;padding-left: 18px;padding-right: 0px;text-align: center;">
+                                                <% if(appointments.length > 0) { %>
+                                                    <table class="table table-hover table-borderless">
+                                                        <thead>
+                                                            <tr style="height: 60px;padding-left: 20px;">
+                                                                <th>Date</th>
+                                                                <th>Time</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                    <% for(var appointment of appointments) { %>
+                                                        <tbody>
+                                                            <tr style="height: 60px;">
+                                                                <td style="text-align: center;"><%= appointment.appointmentDate %></td>
+                                                                <td style="text-align: center;"><%= appointment.appointmentTime %></td>
+                                                                <td><%= appointment.status %></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                     <% } %>
-                                                    
-                                                    <!--<tr style="height: 60px;">
-                                                            <td style="text-align: center;">02/02/2021</td>
-                                                            <td>12 : 00 pm</td>
-                                                            <td>Completed</td>
-                                                        </tr>
-                                                        <tr style="height: 60px;">
-                                                            <td style="text-align: center;">16/03/2021</td>
-                                                            <td>11 : 30 am</td>
-                                                            <td>Completed</td>
-                                                        </tr>
-                                                        <tr style="height: 60px;">
-                                                            <td style="text-align: center;">09/04/2021</td>
-                                                            <td>15 : 30 pm</td>
-                                                            <td>Completed</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="height: 60px;text-align: center;">28/05/2021</td>
-                                                            <td>15 : 00 pm</td>
-                                                            <td>Completed</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="height: 60px;text-align: center;">10/07/2021</td>
-                                                            <td>13 : 00 pm</td>
-                                                            <td>Completed</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="height: 60px;text-align: center;">15/08/2021</td>
-                                                            <td>14 : 00 pm</td>
-                                                            <td style="font-weight: bold;">Pending</td>
-                                                        </tr> -->
+                                                <% } else { %>
+                                                    <p> You currently have no sessions with the counsellor </p>
+                                                <% } %>
+                                                
+                                                <!--<tr style="height: 60px;">
+                                                        <td style="text-align: center;">02/02/2021</td>
+                                                        <td>12 : 00 pm</td>
+                                                        <td>Completed</td>
+                                                    </tr>
+                                                    <tr style="height: 60px;">
+                                                        <td style="text-align: center;">16/03/2021</td>
+                                                        <td>11 : 30 am</td>
+                                                        <td>Completed</td>
+                                                    </tr>
+                                                    <tr style="height: 60px;">
+                                                        <td style="text-align: center;">09/04/2021</td>
+                                                        <td>15 : 30 pm</td>
+                                                        <td>Completed</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="height: 60px;text-align: center;">28/05/2021</td>
+                                                        <td>15 : 00 pm</td>
+                                                        <td>Completed</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="height: 60px;text-align: center;">10/07/2021</td>
+                                                        <td>13 : 00 pm</td>
+                                                        <td>Completed</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="height: 60px;text-align: center;">15/08/2021</td>
+                                                        <td>14 : 00 pm</td>
+                                                        <td style="font-weight: bold;">Pending</td>
+                                                    </tr> -->
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane active" role="tabpanel" id="tab-3" style="padding-top: 0px;padding-left: 42px;">
+                                        <div class="card shadow mb-3" style="width: 500px;height: 434px;">
+                                            <div class="card-header py-3" style="padding-bottom: 10px;height: 52px;">
+                                                <p class="m-0 fw-bold" style="font-size: 18px;">Book an appointment</p>
+                                            </div>
+                                            <div class="card-body" style="height: 267px;padding-bottom: 4px;min-height: none;">
+                                                <form  action="/appointments/create" method="POST" id="appointmentForm" style="padding-left: 27px;padding-top: 0px;height: 301px;">
+                                                    <label class="form-label" style="font-size: 18px;">Date of appointment:</label>
+                                                    <input class="form-control" required type="date" name="appointmentDate" id="appointmentDate">
+                                                    <label class="form-label" style="font-size: 18px;">Time of appointment:</label>
+                                                    <input class="form-control" required type="text" name="appointmentTime" id="appointmentTime" placeholder="00:00" style="background: rgba(255,255,255,0);border-style: solid;">
+                                                    <label class="form-label" style="font-size: 18px;">Area for counselling:</label>
+                                                    <select class="form-select" required name="couselling_type" id="couselling_type">
+                                                        <optgroup label="Counselling areas">
+                                                            <option value="" selected="">~~Select here~~</option>
+                                                            <option value="Academic">Academic</option>
+                                                            <option value="Work Problems">Work Problems</option>
+                                                            <option value="Study Skill">Study Skill</option>
+                                                            <option value="Adjustment">Adjustment</option>
+                                                            <option value="Relationship">Relationship</option>
+                                                            <option value="Work Problems">Work Problems</option>
+                                                            <option value="Career Options">Career Options</option>
+                                                            <option value="PTSD">PTSD</option>
+                                                            <option value="Addiction">Addiction</option>
+                                                            <option value="Substance Related">Substance Related</option>
+                                                            <option value="Childhood/Family issues">Childhood/Family issues</option>
+                                                            <option value="Dreams">Dreams</option>
+                                                            <option value="Parenting">Parenting</option>
+                                                            <option value="Finances">Finances</option>
+                                                            <option value="Others">Others</option>
+                                                        </optgroup>
+                                                    </select><label class="form-label" style="font-size: 18px;margin-top: 16px;">If others please specify:</label><input class="form-control" type="text" style="background: rgba(255,255,255,0);height: 27px;border-style: double;border-top-style: none;border-right-style: none;border-bottom-style: inset;border-left-width: 28px;border-left-style: none;">
+                                                </form>
+                                                <div style="padding-top: 15px;padding-left: 119px;"><input class="btn btn-primary d-grid" type="submit" style="background: var(--bs-indigo);padding-top: 6px;padding-left: 15px;" value="Submit" onsubmit=makeAppointment()/></div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane active" role="tabpanel" id="tab-3" style="padding-top: 0px;padding-left: 42px;">
-                                            <div class="card shadow mb-3" style="width: 500px;height: 434px;">
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="tab-4">
+                                        <div class="col-lg-12 d-lg-flex justify-content-lg-center" style="padding-top: 8px;width: 500px;">
+                                            <div class="card shadow mb-3" style="width: 500px;">
                                                 <div class="card-header py-3" style="padding-bottom: 10px;height: 52px;">
-                                                    <p class="m-0 fw-bold" style="font-size: 18px;">Book an appointment</p>
+                                                    <p class="m-0 fw-bold" style="font-size: 18px;">Change Password</p>
                                                 </div>
                                                 <div class="card-body" style="height: 267px;padding-bottom: 4px;min-height: none;">
-                                                    <form id="appointmentForm" style="padding-left: 27px;padding-top: 0px;height: 301px;">
-                                                        <label class="form-label" style="font-size: 18px;">Date of appointment:</label>
-                                                        <input class="form-control" required type="date" name="appointmentDate" id="appointmentDate">
-                                                        <label class="form-label" style="font-size: 18px;">Time of appointment:</label>
-                                                        <input class="form-control" required type="text" name="appointmentTime" id="appointmentTime" placeholder="00:00" style="background: rgba(255,255,255,0);border-style: solid;">
-                                                        <label class="form-label" style="font-size: 18px;">Area for counselling:</label>
-                                                        <select class="form-select" required name="couselling_type" id="couselling_type">
-                                                            <optgroup label="Counselling areas">
-                                                                <option value="" selected="">~~Select here~~</option>
-                                                                <option value="Academic">Academic</option>
-                                                                <option value="Work Problems">Work Problems</option>
-                                                                <option value="Study Skill">Study Skill</option>
-                                                                <option value="Adjustment">Adjustment</option>
-                                                                <option value="Relationship">Relationship</option>
-                                                                <option value="Work Problems">Work Problems</option>
-                                                                <option value="Career Options">Career Options</option>
-                                                                <option value="PTSD">PTSD</option>
-                                                                <option value="Addiction">Addiction</option>
-                                                                <option value="Substance Related">Substance Related</option>
-                                                                <option value="Childhood/Family issues">Childhood/Family issues</option>
-                                                                <option value="Dreams">Dreams</option>
-                                                                <option value="Parenting">Parenting</option>
-                                                                <option value="Finances">Finances</option>
-                                                                <option value="Others">Others</option>
-                                                            </optgroup>
-                                                        </select><label class="form-label" style="font-size: 18px;margin-top: 16px;">If others please specify:</label><input class="form-control" type="text" style="background: rgba(255,255,255,0);height: 27px;border-style: double;border-top-style: none;border-right-style: none;border-bottom-style: inset;border-left-width: 28px;border-left-style: none;">
-                                                    </form>
-                                                    <div style="padding-top: 15px;padding-left: 119px;"><input class="btn btn-primary d-grid" type="submit" style="background: var(--bs-indigo);padding-top: 6px;padding-left: 15px;" value="Submit" onsubmit=makeAppointment()/></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" role="tabpanel" id="tab-4">
-                                            <div class="col-lg-12 d-lg-flex justify-content-lg-center" style="padding-top: 8px;width: 500px;">
-                                                <div class="card shadow mb-3" style="width: 500px;">
-                                                    <div class="card-header py-3" style="padding-bottom: 10px;height: 52px;">
-                                                        <p class="m-0 fw-bold" style="font-size: 18px;">Change Password</p>
-                                                    </div>
-                                                    <div class="card-body" style="height: 267px;padding-bottom: 4px;min-height: none;">
-                                                        <form action="/dashboard/activity-log" method="POST">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    <div class="form-group mb-3"><label class="form-label" for="first_name"><strong>New Password</strong><br></label><input class="form-control" type="password" name="new_password"></div>
-                                                                </div>
-                                                                <div class="col">
-                                                                    <div class="form-group mb-3"><label class="form-label" for="first_name"><strong>Confirm New Password</strong><br></label><input class="form-control" type="password"></div>
-                                                                </div>
+                                                    <form action="/dashboard/patient-updatePassword" method="POST">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group mb-3"><label class="form-label" for="first_name"><strong>New Password</strong><br></label><input class="form-control" type="password" name="new_password"></div>
                                                             </div>
-                                                            <div class="form-group mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: var(--bs-indigo);">Save Changes</button></div>
-                                                        </form>
-                                                    </div>
+                                                            <div class="col">
+                                                                <div class="form-group mb-3"><label class="form-label" for="first_name"><strong>Confirm New Password</strong><br></label><input class="form-control" type="password"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: var(--bs-indigo);">Save Changes</button></div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -226,7 +224,10 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
+                <!-- <form  action="/dashboard/activity-log" method="POST" style="width: 1250px;height: 206px;padding: 41px 41px;padding-top: 0px;padding-right: 94px;padding-bottom: 16px;">
+                    
+                </form> -->
                 <div class="col" style="height: 317px;width: 341px;padding-top: 0px;padding-right: 0px;padding-left: 0px;">
                     <p style="width: 323px;font-weight: bold;"><%= user.bio %></p>
                 </div>

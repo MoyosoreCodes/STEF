@@ -87,7 +87,7 @@
     <div class="col-lg-12 d-lg-flex justify-content-lg-center" style="height: 600px;margin-top: 10px;">
         <div class="card shadow mb-3" style="width: 1270px;height: 590px;margin-bottom: 60px;">
             <div class="card-body">
-                <!-- <form style="width: 1250px;height: 206px;padding: 41px 41px;padding-top: 0px;padding-right: 94px;padding-bottom: 16px;"> -->
+                <form style="width: 1250px;height: 206px;padding: 41px 41px;padding-top: 0px;padding-right: 94px;padding-bottom: 16px;">
                     <div class="container">
                         <div class="row" style="width: 1092px;margin-right: 0px;">
                             <div class="col-md-3">
@@ -168,7 +168,7 @@
                                                     <p class="m-0 fw-bold" style="font-size: 18px;">Book an appointment</p>
                                                 </div>
                                                 <div class="card-body" style="height: 267px;padding-bottom: 4px;min-height: none;">
-                                                    <form action="/appointments/create" method="POST" style="padding-left: 27px;padding-top: 0px;height: 301px;">
+                                                    <form id="appointmentForm" style="padding-left: 27px;padding-top: 0px;height: 301px;">
                                                         <label class="form-label" style="font-size: 18px;">Date of appointment:</label>
                                                         <input class="form-control" type="date" name="appointmentDate">
                                                         <label class="form-label" style="font-size: 18px;">Time of appointment:</label>
@@ -226,7 +226,7 @@
                             </div>
                         </div>
                     </div>
-                <!-- </form> -->
+                </form>
                 <div class="col" style="height: 317px;width: 341px;padding-top: 0px;padding-right: 0px;padding-left: 0px;">
                     <p style="width: 323px;font-weight: bold;"><%= user.bio %></p>
                 </div>
@@ -241,7 +241,7 @@
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/dashboard/patient">Profile</a></li>
-                        <li><a href="/dashboard/patient">Appoinment</a></li>
+                        <li><a href="/dashboard/activity-log">Appoinment</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-md-3 item">
@@ -262,6 +262,22 @@
             <p class="copyright">Otani © 2021</p>
         </div>
     </footer>
+    <script>
+        const form = document.getElementById('appointmentForm');
+        const appointmentDate = form.elements.appointmentDate;
+        const appointmentTime = form.elements.appointmentTime;
+        const couselling_type = form.elements.couselling_type;
+
+        console.log(appointmentDate);
+        console.log(appointmentTime);
+        console.log(couselling_type);
+
+        // form.addEventListener('submit', (e) => {
+        //     e.preventDefault();
+
+        //     fetch('https://stef-dev.herokuapp.com/appointments/create')
+        // })
+    </script>
     <script src="/User/assets/bootstrap/js/bootstrap.min.js"></script>
     <script>
         window.watsonAssistantChatOptions = {

@@ -87,7 +87,7 @@
     <div class="col-lg-12 d-lg-flex justify-content-lg-center" style="height: 600px;margin-top: 10px;">
         <div class="card shadow mb-3" style="width: 1270px;height: 590px;margin-bottom: 60px;">
             <div class="card-body">
-                <form  action="/appointment/create" method="POST" style="width: 1250px;height: 206px;padding: 41px 41px;padding-top: 0px;padding-right: 94px;padding-bottom: 16px;">
+                <form  action="/dashboard/activity-log" method="POST" style="width: 1250px;height: 206px;padding: 41px 41px;padding-top: 0px;padding-right: 94px;padding-bottom: 16px;">
                     <div class="container">
                         <div class="row" style="width: 1092px;margin-right: 0px;">
                             <div class="col-md-3">
@@ -209,7 +209,7 @@
                                                         <form>
                                                             <div class="row">
                                                                 <div class="col">
-                                                                    <div class="form-group mb-3"><label class="form-label" for="first_name"><strong>New Password</strong><br></label><input class="form-control" type="password"></div>
+                                                                    <div class="form-group mb-3"><label class="form-label" for="first_name"><strong>New Password</strong><br></label><input class="form-control" type="password" name="new_password"></div>
                                                                 </div>
                                                                 <div class="col">
                                                                     <div class="form-group mb-3"><label class="form-label" for="first_name"><strong>Confirm New Password</strong><br></label><input class="form-control" type="password"></div>
@@ -276,7 +276,7 @@
           document.head.appendChild(t);
         });
       </script>
-      <script>
+      <!-- <script>
         function makeAppointment(){
             event.preventDefault();
             console.log('it works');
@@ -308,7 +308,7 @@
                 console.log(err);
             })
         }
-    </script>
+    </script> -->
 </body>
 
 </html>

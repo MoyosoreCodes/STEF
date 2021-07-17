@@ -170,11 +170,11 @@
                                                 <div class="card-body" style="height: 267px;padding-bottom: 4px;min-height: none;">
                                                     <form id="appointmentForm" style="padding-left: 27px;padding-top: 0px;height: 301px;">
                                                         <label class="form-label" style="font-size: 18px;">Date of appointment:</label>
-                                                        <input class="form-control" required type="date" name="appointmentDate">
+                                                        <input class="form-control" required type="date" name="appointmentDate" id="appointmentDate">
                                                         <label class="form-label" style="font-size: 18px;">Time of appointment:</label>
-                                                        <input class="form-control" required type="text" name="appointmentTime" placeholder="00:00" style="background: rgba(255,255,255,0);border-style: solid;">
+                                                        <input class="form-control" required type="text" name="appointmentTime" id="appointmentTime" placeholder="00:00" style="background: rgba(255,255,255,0);border-style: solid;">
                                                         <label class="form-label" style="font-size: 18px;">Area for counselling:</label>
-                                                        <select class="form-select" required name="couselling_type">
+                                                        <select class="form-select" required name="couselling_type" id="couselling_type">
                                                             <optgroup label="Counselling areas">
                                                                 <option value="" selected="">~~Select here~~</option>
                                                                 <option value="Academic">Academic</option>
@@ -195,7 +195,7 @@
                                                             </optgroup>
                                                         </select><label class="form-label" style="font-size: 18px;margin-top: 16px;">If others please specify:</label><input class="form-control" type="text" style="background: rgba(255,255,255,0);height: 27px;border-style: double;border-top-style: none;border-right-style: none;border-bottom-style: inset;border-left-width: 28px;border-left-style: none;">
                                                     </form>
-                                                    <div style="padding-top: 15px;padding-left: 119px;"><button class="btn btn-primary d-grid" type="submit" style="background: var(--bs-indigo);padding-top: 6px;padding-left: 15px;">Submit</button></div>
+                                                    <div style="padding-top: 15px;padding-left: 119px;"><button class="btn btn-primary d-grid" type="submit" style="background: var(--bs-indigo);padding-top: 6px;padding-left: 15px;" onsubmit=makeAppointment(e)>Submit</button></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -263,32 +263,37 @@
         </div>
     </footer>
     <script>
-        const form = document.getElementById('appointmentForm');
-        const appointmentDate = form.elements.appointmentDate.value;
-        const appointmentTime = form.elements.appointmentTime.value;
-        const couselling_type = form.elements.couselling_type.value;
-
-        console.log(appointmentDate);
-        console.log(appointmentTime);
-        console.log(couselling_type);
-        const formData = {
-            appointmentDate,
-            appointmentTime,
-            couselling_type
-        }
-
-        form.addEventListener('submit', (e) => {
+        function makeAppointment(e){
             e.preventDefault();
+            console.log('it works');
+            const appointmentDate = document.getElementById('appointmentDate').value;
+            const appointmentTime = document.getElementById('appointmentTime').value;
+            const couselling_type = document.getElementById('couselling_type').value;
+
+            console.log(appointmentDate);
+            console.log(appointmentTime);
+            console.log(couselling_type);
+            const formData = {
+                appointmentDate,
+                appointmentTime,
+                couselling_type
+            }
 
             fetch('https://stef-dev.herokuapp.com/appointments/create', {
                 method: 'POST', 
+                headers: { 
+                    'Content-Type': 'application/json' 
+                    // 'Content-Type': 'application/x-www-form-urlencoded', 
+                }, 
                 body: JSON.stringify(formData)
             }).then(data => {
+                console.log(data);
                 console.log('appointment created successfully');
+                alert('appointment created successfully')
             }).catch(err => {
                 console.log(err);
             })
-        })
+        }
     </script>
     <script src="/User/assets/bootstrap/js/bootstrap.min.js"></script>
     <script>

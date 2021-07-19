@@ -49,6 +49,10 @@ router.post('/patient-login', passport.authenticate('local',
     )
 );
 
+router.get('/counsellor-login', (req, res) => {
+    return res.render('counsellorRegister')
+});
+
 router.post('/patient-register', async (req, res) => {
     try {
         const newUser = await userServices.addUser(req.body)
@@ -62,6 +66,25 @@ router.post('/patient-register', async (req, res) => {
     }
         
 })
+
+router.post('/counsellor-register', (req, res) => {
+    try {
+        const body = req.body;
+        const user_type = {
+            'user_type': "COUNSELLOR"
+        }
+        Object.assign(body, user_type)
+        const newUser = await userServices.addUser(body)
+        if(!newUser){
+            return res.json({'error': " errror creating user", })
+        }
+        console.log(newUser);
+        return res.redirect('/patient-login')
+    } catch (error) {
+        return error
+    }
+})
+
 router.get('/faq', (req, res) => {
     return res.render('faq')
 })

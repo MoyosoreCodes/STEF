@@ -41,7 +41,7 @@ router.get('/patient-login', function(req, res) {
 router.get('/forgot-password', function(req, res) {
     //console.log(errors);
     const title = "Forgot Password"
-    return res.render('forgot-password', {title, errors});
+    return res.render('forgot-password', {title});
 });
 
 router.post('/patient-login', passport.authenticate('local', 

@@ -90,6 +90,7 @@ router.get('/faq', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
+    req.session.destroy()
     req.logout();
     return res.redirect('/');
 })

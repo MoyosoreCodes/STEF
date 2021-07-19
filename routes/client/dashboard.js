@@ -70,6 +70,16 @@ router.get('/users', authUser, async (req, res) => {
     return res.redirect('/landing')
 });
 
+router.get('/profile', authUser, async (req, res) => {
+    const _id =  req.session.passport.user;
+    const user = await User.findById({_id});
+    if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
+        const allUsers = await User.find();
+        return res.render('profile2', { user, allUsers})
+    }
+    return res.redirect('/landing')
+});
+
 router.get('/appointments', authUser, async (req,res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
@@ -80,7 +90,7 @@ router.get('/appointments', authUser, async (req,res) => {
     return res.redirect('/landing')
 })
 
-router.get('/sessions', authUser, async (req,res) => {
+router.get('/session', authUser, async (req,res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
@@ -95,6 +105,7 @@ router.get('/update/:id', authUser, async (req, res) => {
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
         const patient = await User.findOne({_id: req.params.id});
+        const session = await Session.findOne({patientId: req.params.id})
         return res.render('profileUpdate', { user, patient})
     }
     return res.redirect('/landing')

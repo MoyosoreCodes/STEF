@@ -1,6 +1,7 @@
 const {IamAuthenticator} = require('ibm-watson/auth');
 const AssistantV2 = require('ibm-watson/assistant/v2');
 
+//connect to assistant
 const assistant = new AssistantV2({
     version: "2020-09-24",
     authenticator: new IamAuthenticator({

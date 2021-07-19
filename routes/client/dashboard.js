@@ -15,12 +15,27 @@ const authUser = (req, res, next) => {
         return res.status(401).redirect('/login')
     }
 }
+
+router.get('/', (req, res) => {
+    const _id =  req.session.passport.user;
+    const user = await userDB.User.findOne({_id})
+    if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
+        return res.redirect('/dashboard/counsellor')
+    }
+    if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
+        return res.redirect('/dashboard/patient')
+    }
+    return res.redirect('/landing')
+})
+
 // *get routes*
-router.get('/admin', authUser, async (req, res) => {
+router.get('/counsellor', authUser, async (req, res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
-        return res.render('admin', { user })
+        const sessions = await Session.find()
+        const appointments = await Appointment.find()
+        return res.render('Dashboard', { user, sessions, appointments })
     }
     return res.redirect('/landing')
 });
@@ -59,8 +74,8 @@ router.get('/appointments', authUser, async (req,res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
-        const allAppointments = await Appointment.find();
-        return res.render('activity', { user, allAppointments})
+        const appointments = await Appointment.find();
+        return res.render('appointment', { user, appointments})
     }
     return res.redirect('/landing')
 })
@@ -69,31 +84,49 @@ router.get('/sessions', authUser, async (req,res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
-        const allSessions = await Session.find();
-        return res.render('sessions', { user, allSessions})
+        const patients = await User.find();
+        return res.render('sessions', { user, patients})
     }
     return res.redirect('/landing')
 })
 
-// *post routes*
-//edit users
-router.post('admin/users/update', authUser, async (req, res) => {
-    const body = req.body
-    const foundUser = await userServices.getPatientId(body.patientId)
-    if(foundUser.status !== 200) { return res.redirect('/admin/users');}
-    await User.updateOne(
-        {patientId: body.patientId}, 
-        {body}, 
-    )
-    return res.redirect('/admin/users');
+router.get('/update/:id', authUser, async (req, res) => {
+    const _id =  req.session.passport.user;
+    const user = await User.findById({_id});
+    if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
+        const patient = await User.findOne({_id: req.params.id});
+        return res.render('profileUpdate', { user, patient})
+    }
+    return res.redirect('/landing')
 })
 
-router.post('admin/users/delete', authUser, async (req, res) => {
+router.get('/view/:id', authUser, async (req, res) => {
+    const _id =  req.session.passport.user;
+    const user = await User.findById({_id});
+    if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
+        const patient = await User.findOne({_id: req.params.id});
+        const session = await Session.findOne({patientId: req.params.id})
+        return res.render('profileUpdate', { user, patient, session})
+    }
+    return res.redirect('/landing')
+})
+// *post routes*
+//edit users
+router.post('/update/:id', authUser, async (req, res) => {
     const body = req.body
-    const foundUser = await userServices.getPatientId(body.patientId)
-    if(foundUser.status !== 200) { return res.redirect('/admin/users');}
-    await userServices.deleteUser(foundUser._id);
-    return res.redirect('/admin/users');
+    await User.updateOne(
+        {patientId: req.params.id}, 
+        {body}, 
+    )
+    return res.redirect('/dashboard/users');
+})
+
+router.post('/delete/:id', authUser, async (req, res) => {
+    // const body = req.body
+    // const foundUser = await userServices.getPatientId(body.patientId)
+    // if(foundUser.status !== 200) { return res.redirect('/admin/users');}
+    await userServices.deleteUser(req.params.id);
+    return res.redirect('/dashboard/users');
 })
 
 router.post('/sessions', authUser, async (req, res) => {
@@ -106,7 +139,7 @@ router.post('/sessions', authUser, async (req, res) => {
     return res.redirect('/landing')
 })
 
-router.post('/patient-updatePassword', authUser, async (req, res) => {
+router.post('/forgot-password', authUser, async (req, res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     const {new_password} = req.body

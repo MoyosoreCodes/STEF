@@ -45,7 +45,7 @@ router.get('/forgot-password', function(req, res) {
 });
 
 router.post('/patient-login', passport.authenticate('local', 
-        {failureRedirect: '/patient-login', failureFlash: true, successRedirect:'/dashboard/patient'}
+        {failureRedirect: '/patient-login', failureFlash: true, successRedirect:'/dashboard/'}
     )
 );
 

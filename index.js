@@ -21,6 +21,7 @@ const store = new MongodbStore({
     ttl:3*24*60*60*1000
 })
 
+//db connection
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
         .then(() => {
             console.log('database connection successful');
@@ -32,6 +33,7 @@ mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true, useCr
             console.log(err);
 });
 
+//setting views to ejs
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

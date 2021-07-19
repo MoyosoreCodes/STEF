@@ -114,7 +114,7 @@ module.exports = {
     updateUser: async (data) => {
         try {
             let user = userDB.User;
-            return await user.updateOne({_id: data._id},
+            return await user.updateOne({_id: data},
                 data);
         }catch (e) {
             return e // promises do this already: catch just to return it.

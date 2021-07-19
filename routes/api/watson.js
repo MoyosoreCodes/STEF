@@ -55,5 +55,3 @@ router.post('/appointment/create', async (req, res) => {
 //maybe create it with a 'follow_up' type
 
 module.exports = router
-
-module.exports = router

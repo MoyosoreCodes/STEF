@@ -4,7 +4,7 @@ const {Session} = require('../model/sessionModel');
 const userServices = require('../services/userServices');
 
 module.exports = {
-    //create/update records 
+    //create/update sessions 
     createUserSession: async (data) => {
         try {
             const body = data.body
@@ -52,13 +52,13 @@ module.exports = {
                     message: counsellor.message,
                 }   
             }
-            const x = {patient, counsellor}
-            Object.assign(body, x)
+            const x = {patient, counsellor:counsellor.data._id}
+            Object.assign(body, x) // adds x to body
             const newAppointment = await Appointment.create(body);
             
             const appointment = await Appointment.findOne({_id: newAppointment._id})
 
-            const updatedUser = await userDb.updateOne({
+            const updatedUser = await User.updateOne({
                 patientId: foundUser.data._id,
             }, {$push:{'appointments': appointment._id}});
 

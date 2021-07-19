@@ -3,6 +3,7 @@ const  router = express.Router();
 const appointmentController = require('../../controller/appointmentController');
 const userController = require('../../controller/userController');
 const { User } = require('../../database/userDB');
+const { user_types } = require('../../model/userModel');
 
 router.post('/create', async (req, res) => {console.log('here');
         const _id =  req.session.passport.user;

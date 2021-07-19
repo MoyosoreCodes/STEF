@@ -54,6 +54,7 @@ module.exports = {
             }
             const x = {patient, counsellor:counsellor.data._id}
             Object.assign(body, x) // adds x to body
+            console.log(body);
             const newAppointment = await Appointment.create(body);
             
             const appointment = await Appointment.findOne({_id: newAppointment._id})

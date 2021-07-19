@@ -6,6 +6,7 @@ const userController = require('../../controller/userController');
 router.post('/create', async (req, res) => {console.log('here');
         const _id =  req.session.passport.user;
         const user = await User.findById({_id});
+        console.log(`${user.first_name} is making appointment`);
         console.log(req.body);
         if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
             await userController.createUserAppointments(req)

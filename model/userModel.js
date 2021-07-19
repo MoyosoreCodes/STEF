@@ -10,7 +10,7 @@ const GenericUserObject = {
     first_name: {type: String,trim: true, required: [true,'please provide first name'], index:true},
     last_name: {type: String,trim: true, required: [true,'please provide last name'], index:true},
     email: {type: String,trim: true, required: [true,'please provide email address'], match: [/\S+@\S+\.\S+/, 'is invalid'], index:  {unique: true, dropDups: true}},
-    patientId: {type: String,trim: true, required: [true,'please provide matriculation number'], match: [/^[a-z0-9]+$/i, 'is invalid'], index:  {unique: true, dropDups: true}},
+    patientId: {type: String,trim: true, match: [/^[a-z0-9]+$/i, 'is invalid'], index:  {unique: true, dropDups: true}},
     password: {type:String, required:[true,'please provide password']},
     department: String,
     level:String,

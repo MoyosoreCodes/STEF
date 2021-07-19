@@ -64,7 +64,7 @@ router.get('/users', authUser, async (req, res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
-        const allUsers = await User.find();
+        const users = await User.find();
         return res.render('users', { user, users})
     }
     return res.redirect('/landing')

@@ -11,7 +11,7 @@ passport.use(new LocalStrategy({
         async function( req, username, password, done) {
             // const patientId = username;
             let query 
-            if(patientId.includes('@')){
+            if(username.includes('@')){
                 query = {
                     'email':username
                 }

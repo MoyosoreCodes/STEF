@@ -67,7 +67,7 @@ router.post('/patient-register', async (req, res) => {
         
 })
 
-router.post('/counsellor-register', (req, res) => {
+router.post('/counsellor-register', async (req, res) => {
     try {
         const body = req.body;
         const user_type = {

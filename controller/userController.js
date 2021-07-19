@@ -59,7 +59,7 @@ module.exports = {
             const appointment = await Appointment.findOne({_id: newAppointment._id})
 
             const updatedUser = await User.updateOne({
-                patientId: foundUser.data._id,
+                patientId: patient,
             }, {$push:{'appointments': appointment._id}});
 
             return {

@@ -5,7 +5,9 @@ const userController = require('../../controller/userController');
 const { User } = require('../../database/userDB');
 const { user_types } = require('../../model/userModel');
 
-router.post('/create', async (req, res) => {console.log('here');
+router.post('/create', async (req, res) => {
+    try {
+        console.log('here');
         const _id =  req.session.passport.user;
         const user = await User.findById({_id});
         console.log(`${user.first_name} is making appointment`);
@@ -14,7 +16,10 @@ router.post('/create', async (req, res) => {console.log('here');
             await userController.createUserAppointments(req)
             return res.redirect('/dashboard/patient')
         }
-        return res.redirect('/landing')
+        return res.redirect('/landing')        
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 // router.get('/status', (req, res) => {

@@ -65,7 +65,7 @@ router.get('/users', authUser, async (req, res) => {
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
         const allUsers = await User.find();
-        return res.render('users', { user, allUsers})
+        return res.render('users', { user, users})
     }
     return res.redirect('/landing')
 });

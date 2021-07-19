@@ -125,14 +125,14 @@
                                     </thead>
                                     <tbody>
                                         <% if(appointments) { %>
-                                        <% for(var appointment of appointments) { %>appointments
+                                        <% for(var appointment of appointments) { %>
                                         <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="/Counsellor/assets/img/avatars/avatar1.jpeg">Airi Satou</td>
-                                            <td>Student</td>
-                                            <td>Career Guidance<br></td>
-                                            <td>New</td>
-                                            <td>2008/11/28</td>
-                                            <td>14 : 00 pm</td>
+                                            <td><img class="rounded-circle me-2" width="30" height="30" src="/Counsellor/assets/img/avatars/avatar1.jpeg"><%=appointment.patient.first_name%> <%=appointment.patient.last_name%></td>
+                                            <td><%=appointment.patient.user_type%></td>
+                                            <td><%=appointment.couselling_type%><br></td>
+                                            <td><%=appointment.status%></td>
+                                            <td><%=appointment.appointmentDate%></td>
+                                            <td><%=appointment.appointmentTime%></td>
                                             <td style="width: 219px;"><button class="btn btn-success" type="button" style="width: 75.5px;color: rgb(255,253,253);">Accept</button><button class="btn btn-danger" type="button" style="margin: 2px;margin-left: 20px;">Decline</button></td>
                                         </tr> 
                                         <% } %>

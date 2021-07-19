@@ -85,7 +85,7 @@ router.get('/appointments', authUser, async (req,res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
-        const appointments = await Appointment.find();
+        const appointments = await Appointment.find().populate('patient', 'first_name last_name user_type');
         return res.render('appointment', { user, appointments})
     }
     return res.redirect('/')

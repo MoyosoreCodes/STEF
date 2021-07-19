@@ -9,8 +9,18 @@ passport.use(new LocalStrategy({
             passReqToCallback: true
         }, 
         async function( req, username, password, done) {
-            const patientId = username;
-            const user = await userDb.User.findOne({patientId});
+            // const patientId = username;
+            let query 
+            if(patientId.includes('@')){
+                query = {
+                    'email':username
+                }
+            }else {
+                query = {
+                    'patientId':username
+                }
+            }
+            const user = await userDb.User.findOne(query)
             if (!user) {
                 console.log("User Doesn't Exist");
                 return done(null, false, req.flash('error', "User Doesn't Exist"));
@@ -32,7 +42,6 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((user, done) => {
-    console.log('De-Serialized');
     done(null, user)
 })
 

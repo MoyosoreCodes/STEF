@@ -14,7 +14,7 @@ router.post('/create', async (req, res) => {
         console.log(req.body);
         if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
             await userController.createUserAppointments(req)
-            return res.redirect('/dashboard/patient')
+            return res.redirect('/dashboard/activity-log')
         }
         return res.redirect('/landing')        
     } catch (error) {

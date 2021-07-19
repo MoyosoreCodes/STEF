@@ -2,7 +2,7 @@ const express = require('express');
 const userController = require('../../controller/userController');
 const router = express.Router();
 const {User} = require('../../database/userDB');
-const { Appointment } = require('../../model/appointmentModel');
+const { Appointment, appointment_status } = require('../../model/appointmentModel');
 const { Session } = require('../../model/sessionModel');
 const { user_types } = require('../../model/userModel');
 const userServices = require('../../services/userServices');
@@ -35,7 +35,8 @@ router.get('/counsellor', authUser, async (req, res) => {
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
         const sessions = await Session.find()
         const appointments = await Appointment.find()
-        return res.render('Dashboard', { user, sessions, appointments })
+        const pendingAppointments = await Appointment.find({status: appointment_status.PENDING})
+        return res.render('Dashboard', { user, sessions, appointments, pendingAppointments })
     }
     return res.redirect('/')
 });

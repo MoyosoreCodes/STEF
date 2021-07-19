@@ -25,7 +25,7 @@ router.get('/', authUser, async (req, res) => {
     if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
         return res.redirect('/dashboard/patient')
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 })
 
 // *get routes*
@@ -37,7 +37,7 @@ router.get('/counsellor', authUser, async (req, res) => {
         const appointments = await Appointment.find()
         return res.render('Dashboard', { user, sessions, appointments })
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 });
 
 router.get('/patient', authUser, async (req, res) => {
@@ -46,7 +46,7 @@ router.get('/patient', authUser, async (req, res) => {
     if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
         return res.render('profile', { user })
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 })
 
 router.get('/activity-log', authUser, async (req, res) => {
@@ -57,7 +57,7 @@ router.get('/activity-log', authUser, async (req, res) => {
     if((user.user_type.toUpperCase() == user_types.STAFF) || (user.user_type.toUpperCase() == user_types.STUDENT)){
         return res.render('activity', { user, appointments, sessions })
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 })
 
 router.get('/users', authUser, async (req, res) => {
@@ -67,7 +67,7 @@ router.get('/users', authUser, async (req, res) => {
         const users = await User.find();
         return res.render('users', { user, users})
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 });
 
 router.get('/profile', authUser, async (req, res) => {
@@ -77,7 +77,7 @@ router.get('/profile', authUser, async (req, res) => {
         const allUsers = await User.find();
         return res.render('profile2', { user, allUsers})
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 });
 
 router.get('/appointments', authUser, async (req,res) => {
@@ -87,7 +87,7 @@ router.get('/appointments', authUser, async (req,res) => {
         const appointments = await Appointment.find();
         return res.render('appointment', { user, appointments})
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 })
 
 router.get('/session', authUser, async (req,res) => {
@@ -97,7 +97,7 @@ router.get('/session', authUser, async (req,res) => {
         const patients = await User.find();
         return res.render('sessions', { user, patients})
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 })
 
 router.get('/update/:id', authUser, async (req, res) => {
@@ -108,7 +108,7 @@ router.get('/update/:id', authUser, async (req, res) => {
         const session = await Session.findOne({patientId: req.params.id})
         return res.render('profileUpdate', { user, patient})
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 })
 
 router.get('/view/:id', authUser, async (req, res) => {
@@ -119,7 +119,7 @@ router.get('/view/:id', authUser, async (req, res) => {
         const session = await Session.findOne({patientId: req.params.id})
         return res.render('profileUpdate', { user, patient, session})
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 })
 // *post routes*
 //edit users
@@ -147,7 +147,7 @@ router.post('/sessions', authUser, async (req, res) => {
        await userController.createUserSession(req)
         return res.redirect('/sessions')
     }
-    return res.redirect('/landing')
+    return res.redirect('/')
 })
 
 router.post('/forgot-password', authUser, async (req, res) => {
@@ -158,6 +158,6 @@ router.post('/forgot-password', authUser, async (req, res) => {
         await user.setPassword(new_password)
         return res.redirect('/dashboard/activity-log')
     }
-    return res.redirect('/landing');    
+    return res.redirect('/');    
 })
 module.exports = router 

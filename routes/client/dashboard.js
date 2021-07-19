@@ -16,7 +16,7 @@ const authUser = (req, res, next) => {
     }
 }
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     const _id =  req.session.passport.user;
     const user = await userDB.User.findOne({_id})
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){

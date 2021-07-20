@@ -122,7 +122,7 @@
                                     <tbody>
                                         <tr>
                                             <td><img class="rounded-circle me-2" width="30" height="30" src="/Counsellor/assets/img/avatars/avatar1.jpeg"><%patient.first_name%> <%patient.last_name%></td>
-                                            <td><%=patient.user_type.toLowerCase%></td>
+                                            <td><%=patient.user_type%></td>
                                             <td><%=patient.level%><br></td>
                                             <td><a class="btn btn-success" role="button" style="width: 75.5px;color: rgb(255,253,253);" href="/dashboard/view/<%=patient._id%>">View</a><a class="btn btn-secondary" role="button" style="margin: 2px;margin-left: 20px;" href="/dashboard/update/<%=patient._id%>">Update</a></td>
                                         </tr> 

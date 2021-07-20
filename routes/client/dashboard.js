@@ -85,18 +85,65 @@ router.get('/appointments', authUser, async (req,res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
-        const appointments = await Appointment.find().populate('patient', 'first_name last_name user_type');
-        return res.render('appointment', { user, appointments})
+        const appointments = await Appointment.find()
+        const patients = await Users.find();
+        return res.render('appointment', { user, appointments, patients})
     }
     return res.redirect('/')
 })
+
+router.get('/appointments/accept/:id', authUser, async (req, res) => {
+    try {
+        const _id =  req.session.passport.user;
+        const user = await userDB.User.findOne({_id})
+        if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
+            await Appointment.updateOne(
+                {_id: req.params.id}, 
+                {status: appointment_status.APPROVED}
+            )
+            // const patient = await userDB.User.findOne({cardNumber: req.params.cardNumber});
+            // const appointments = await Appointment.find({doctor: _id}).populate('patient', 'first_name last_name cardNumber');
+            return res.redirect('/dashboard/appointments')
+        }
+        return res.redirect('/');
+    } catch (error) {
+        console.log(error); 
+        return {
+            status: 500,
+            message: 'catch error at route',
+            data: error 
+        }        
+    }
+});
+
+router.get('/appointments/decline/:id', authUser, async (req, res) => {
+    try {
+        const _id =  req.session.passport.user;
+        const user = await userDB.User.findOne({_id})
+        if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
+            await Appointment.updateOne(
+                {_id: req.params.id}, 
+                {status: appointment_status.CANCELLED}
+            )
+            return res.redirect('/dashboard/appointments')
+        }
+        return res.redirect('/');
+    } catch (error) {
+        console.log(error); 
+        return {
+            status: 500,
+            message: 'catch error at route',
+            data: error 
+        }       
+    }
+});
 
 router.get('/session', authUser, async (req,res) => {
     const _id =  req.session.passport.user;
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
         const patients = await User.find();
-        return res.render('sessions', { user, patients})
+        return res.render('createSession', { user, patients})
     }
     return res.redirect('/')
 })

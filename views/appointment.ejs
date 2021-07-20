@@ -116,24 +116,23 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Position</th>
-                                            <th>Counselling type&nbsp;</th>
-                                            <th>Status&nbsp;</th>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Actions</th>
+                                            <th>user_type&nbsp;</th>
+                                            <th>ID&nbsp;</th>
+                                            <th>Department</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% if(appointments) { %>
-                                        <% for(var appointment of appointments) { %>
+                                        <% if(patients) { %>
+                                        <% for(var patient of patients) { %>
                                         <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="/Counsellor/assets/img/avatars/avatar1.jpeg"><%=appointment.patient.first_name%> <%=appointment.patient.last_name%></td>
-                                            <td><%=appointment.patient.user_type%></td>
-                                            <td><%=appointment.couselling_type%><br></td>
-                                            <td><%=appointment.status%></td>
-                                            <td><%=appointment.appointmentDate%></td>
-                                            <td><%=appointment.appointmentTime%></td>
-                                            <td style="width: 219px;"><button class="btn btn-success" type="button" style="width: 75.5px;color: rgb(255,253,253);">Accept</button><button class="btn btn-danger" type="button" style="margin: 2px;margin-left: 20px;">Decline</button></td>
+                                            <td><img class="rounded-circle me-2" width="30" height="30" src="/Counsellor/assets/img/avatars/avatar1.jpeg"><%=patient.first_name%> <%=patient.last_name%></td>
+                                            <td><%=patient.user_type%></td>
+                                            <td><%=patient.patientId%><br></td>
+                                            <td><%=patient.department%></td>
+                                            <td style="width: 219px;">
+                                                <a class="btn btn-success" href="/dashboard/appointments/accept/<%=patient._id%>" style="width: 75.5px;color: rgb(255,253,253);">Accept</button>
+                                                <a class="btn btn-danger" href="/dashboard/appointments/decline/<%=patient._id%>" style="margin: 2px;margin-left: 20px;">Decline</a>   
+                                            </td>
                                         </tr> 
                                         <% } %>
                                             <tr> 

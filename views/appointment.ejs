@@ -64,7 +64,7 @@
                 <ul class="navbar-nav text-light" id="accordionSidebar-1" style="height: 502px;margin-top: 44px;">
                     <li class="nav-item" style="height: 60px;font-size: 16px;"><a class="nav-link" href="/dashboard/counsellor" style="font-size: 20px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item" style="height: 60px;"><a class="nav-link" href="/dashboard/profile" style="font-size: 20px;"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item" style="height: 214px;"><a class="nav-link" href="/dashboard/session" style="font-size: 20px;"><i class="fas fa-table"></i><span>Sessions</span></a>
+                    <li class="nav-item" style="height: 214px;"><a class="nav-link" href="/dashboard/sessions" style="font-size: 20px;"><i class="fas fa-table"></i><span>Sessions</span></a>
                         <a class="nav-link" href="/dashboard/users" style="font-size: 20px;"><i class="fa fa-sticky-note"></i>Users</a>
                         <a class="nav-link active" href="/dashboard/appointments" style="font-size: 20px;"><i class="fas fa-clipboard"></i>Appointment</a></li>
                     <li class="nav-item" style="font-size: 20px;"><a class="nav-link" href="/logout" style="font-size: 16.6px;"><i class="far fa-user-circle"></i><span>Log out</span></a></li>
@@ -116,9 +116,9 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Position</th>
-                                            <th>user_type&nbsp;</th>
                                             <th>ID&nbsp;</th>
                                             <th>Department</th>
+                                            <td>Actions</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -130,8 +130,8 @@
                                             <td><%=patient.patientId%><br></td>
                                             <td><%=patient.department%></td>
                                             <td style="width: 219px;">
-                                                <a class="btn btn-success" href="/dashboard/appointments/accept/<%=patient._id%>" style="width: 75.5px;color: rgb(255,253,253);">Accept</button>
-                                                <a class="btn btn-danger" href="/dashboard/appointments/decline/<%=patient._id%>" style="margin: 2px;margin-left: 20px;">Decline</a>   
+                                                <a class="btn btn-success" href="/dashboard/appointments/accept/<%=patient._id%>" onclick="alert('<%=patient.first_name%> appointment approved')" style="width: 75.5px;color: rgb(255,253,253);">Accept</button>
+                                                <a class="btn btn-danger" href="/dashboard/appointments/decline/<%=patient._id%>" onclick="alert('<%=patient.first_name%> appointment cancelled')" style="margin: 2px;margin-left: 20px;">Decline</a>   
                                             </td>
                                         </tr> 
                                         <% } %>
@@ -215,12 +215,10 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Position</strong></td>
-                                            <td><strong>Counselling type</strong></td>
-                                            <td><strong>Status</strong></td>
-                                            <td><strong>Date</strong></td>
-                                            <td><strong>Time</strong></td>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>ID&nbsp;</th>
+                                            <th>Department</th>
                                             <td>Actions</td>
                                         </tr>
                                     </tfoot>

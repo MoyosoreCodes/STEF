@@ -97,6 +97,7 @@ router.get('/appointments/accept/:id', authUser, async (req, res) => {
         const _id =  req.session.passport.user;
         const user = await User.findOne({_id})
         if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
+            const userAppointment = await User.findOne({_id: req.params.id})
             await Appointment.updateOne(
                 {_id: req.params.id}, 
                 {status: appointment_status.APPROVED}
@@ -144,6 +145,15 @@ router.get('/session', authUser, async (req,res) => {
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
         const patients = await User.find();
         return res.render('createSession', { user, patients})
+    }
+    return res.redirect('/')
+})
+router.get('/sessions', authUser, async (req,res) => {
+    const _id =  req.session.passport.user;
+    const user = await User.findById({_id});
+    if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
+        const patients = await User.find();
+        return res.render('session', { user, patients})
     }
     return res.redirect('/')
 })

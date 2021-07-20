@@ -153,7 +153,7 @@ router.get('/sessions', authUser, async (req,res) => {
     const user = await User.findById({_id});
     if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
         const patients = await User.find();
-        return res.render('session', { user, patients})
+        return res.render('sessions', { user, patients})
     }
     return res.redirect('/')
 })

@@ -95,7 +95,7 @@ router.get('/appointments', authUser, async (req,res) => {
 router.get('/appointments/accept/:id', authUser, async (req, res) => {
     try {
         const _id =  req.session.passport.user;
-        const user = await userDB.User.findOne({_id})
+        const user = await User.findOne({_id})
         if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
             await Appointment.updateOne(
                 {_id: req.params.id}, 
@@ -119,7 +119,7 @@ router.get('/appointments/accept/:id', authUser, async (req, res) => {
 router.get('/appointments/decline/:id', authUser, async (req, res) => {
     try {
         const _id =  req.session.passport.user;
-        const user = await userDB.User.findOne({_id})
+        const user = await User.findOne({_id})
         if(user.user_type.toUpperCase() == user_types.COUNSELLOR){
             await Appointment.updateOne(
                 {_id: req.params.id}, 
